@@ -8,9 +8,11 @@ function App() {
   return (
     <div className="App">
       <Header classProgram="Bacharelado em Ciência da Computação" workload="3200 horas"/>
-      <tr>
-        <td><ClassCard/> </td>
-      </tr>
+      <div padding='30px'>
+        <tr>
+          <td><ClassCard/> </td>
+        </tr>
+      </div>
     </div>
   );
 }

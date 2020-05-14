@@ -5,9 +5,9 @@ import ContentEditable from 'react-contenteditable';
  
 var cardStyle = {
   display: 'block',
-  width: '250px',
+  width: '200px',
   transitionDuration: '0.3s',
-  height: '100px'
+  height: '90px'
 }
 class ClassCard extends Component {
   constructor(props) {
