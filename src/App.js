@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <tr>
-        <td><ClassCard /> </td>
+        <td><ClassCard/> </td>
       </tr>
     </div>
   );
