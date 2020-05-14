@@ -13,6 +13,11 @@ import ContentEditable from 'react-contenteditable'
   });*/
 
 
+const titulo = {
+    margin: '0 10px 0 10px',
+    width:'100%'
+};
+
 class Header extends Component {
     constructor(props) {
         super(props)
@@ -27,7 +32,7 @@ class Header extends Component {
 
         return <div>
             <Box border={1} display='flex' margin='0 auto' justifyContent='center' maxWidth='fit-content' minWidth='20%'>
-                <div style={{ margin: '0 10px 0 10px' }}>
+                <div style={titulo}>
                     <ContentEditable
                         tagName='h1'
                         html={this.state.text} // innerHTML of the editable div
