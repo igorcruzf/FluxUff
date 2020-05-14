@@ -26,14 +26,16 @@ class Header extends Component {
     render() {
 
         return <div>
-            <Box border={1} display='flex' margin='0 auto' justifyContent='center' width='65%'>
-                <ContentEditable
-                    tagName='h1'
-                    html={this.state.text} // innerHTML of the editable div
-                    disabled={false} // use true to disable edition
-                    onChange={this.handleChange} // handle innerHTML 
-                    draggable='true'
-                />
+            <Box border={1} display='flex' margin='0 auto' justifyContent='center' maxWidth='fit-content' minWidth='20%'>
+                <div style={{ margin: '0 10px 0 10px' }}>
+                    <ContentEditable
+                        tagName='h1'
+                        html={this.state.text} // innerHTML of the editable div
+                        disabled={false} // use true to disable edition
+                        onChange={this.handleChange} // handle innerHTML 
+                        onBlur={this.sanitize}
+                    />
+                </div>
             </Box>
         </div>
     }
