@@ -1,13 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Card from './components/Card.js';
+import ClassCard from './components/ClassCard.js';
 
 function App() {
   return (
     <div className="App">
       <tr>
-        <td><Card texto = "teste" /> </td>
+        <td><ClassCard /> </td>
       </tr>
     </div>
   );
