@@ -1,17 +1,41 @@
 import React, { Component } from 'react';
 import Box from '@material-ui/core/Box';
+import ContentEditable from 'react-contenteditable'
+//import { makeStyles } from '@material-ui/core/styles';
+
+/*const useStyles = makeStyles({
+    box: {
+      display: 'flex',
+      margin: '0 auto',
+      justifyContent: 'center',
+      width: '65%'
+    }
+  });*/
+
 
 class Header extends Component {
     constructor(props) {
         super(props)
-        this.state = props
+        this.state = { text: this.props.classProgram + ' - ' + this.props.workload }
     }
 
-    render() {
-        return <Box display="flex" margin="0 auto" justifyContent="center" width='65%' border={1}>
-            <h1 contentEditable="true">{this.state.classProgram + '-' + this.state.workload}</h1>
+    handleChange = evt => {
+        this.setState({ text: evt.target.value });
+    };
 
-        </Box>
+    render() {
+
+        return <div>
+            <Box border={1} display='flex' margin='0 auto' justifyContent='center' width='65%'>
+                <ContentEditable
+                    tagName='h1'
+                    html={this.state.text} // innerHTML of the editable div
+                    disabled={false} // use true to disable edition
+                    onChange={this.handleChange} // handle innerHTML 
+                    draggable='true'
+                />
+            </Box>
+        </div>
     }
 
     /* componentDidMount() {
