@@ -74,6 +74,7 @@ class ClassCard extends Component {
           fontFamily: 'Arial',
           fontSize: '12px',
           fontWeight: 'normal'
+          
         }}
         tagName='h5'
         html={this.state.text} // innerHTML of the editable div
