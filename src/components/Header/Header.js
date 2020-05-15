@@ -31,7 +31,7 @@ class Header extends Component {
     render() {
 
         return <div>
-            <Box border={1} display='flex' margin='0 auto' justifyContent='center' maxWidth='fit-content' minWidth='20%'>
+            <Box border={1} display='flex' marginBottom='60px' margin='0 auto' justifyContent='center' maxWidth='fit-content' minWidth='20%'>
                 <div style={titulo}>
                     <ContentEditable
                         tagName='h1'
