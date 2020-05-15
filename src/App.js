@@ -7,10 +7,10 @@ import Header from './components/Header/Header.js'
 function App() {
   return (
     <div className="App">
-      <Header classProgram="Bacharelado em Ciência da Computação" workload="3200 horas"/>
+      <Header classProgram="Bacharelado em Ciência da Computação" workload="3200 horas" />
       <div padding='30px'>
         <tr>
-          <td><ClassCard/> </td>
+          <td><ClassCard /> </td>
         </tr>
       </div>
     </div>
