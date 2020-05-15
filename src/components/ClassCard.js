@@ -8,15 +8,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
  
 var cardStyle = {
   display: 'block',
-  width: '200px',
+  width: '100px',
   transitionDuration: '0.3s',
-  height: '90px',
-  backgroundColor: '#D3D3D3'
+  height: '60px',
+  backgroundColor: '#D3D3D3',
+  verticalAlign: 'middle'
 }
 
 class ClassCard extends Component {
   constructor(props) {
     super(props)
+    this.id = props.id
     this.state = { 
       text: 'Nome da matéria',
     }
@@ -27,19 +29,18 @@ class ClassCard extends Component {
   };
 
   able = () => {
-    document.getElementById('button').style.display = 'none';
-    document.getElementById('content').style.display = 'block';
+    document.getElementById(this.id + 'b').style.display = 'none';
+    document.getElementById(this.id + 'c').style.display = 'block';
   };
 
   render() {
 
     return <Card style={cardStyle}>
-      <CardContent>
-        <IconButton id='button' onClick={this.able} style={{display: 'block', margin: '0 auto', marginTop:'3%'}}>
-          <FontAwesomeIcon icon={faPlusCircle} />
+        <IconButton id={this.id + 'b'} onClick={this.able} style={{display: 'block', margin: '0 auto', }}>
+          <FontAwesomeIcon icon={faPlusCircle}/>
         </IconButton>
         <ContentEditable
-          id='content'
+          id={this.id + 'c'}
           style={{display: 'none'}}
           tagName='h5'
           html={this.state.text} // innerHTML of the editable div
@@ -47,7 +48,6 @@ class ClassCard extends Component {
           onChange={this.handleChange} // handle innerHTML 
           onBlur={this.sanitize}
         />
-      </CardContent>
     </Card>;
   }
 }
