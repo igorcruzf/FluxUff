@@ -70,7 +70,10 @@ class ClassCard extends Component {
         style={{
           display: 'none',
           marginTop: '20%',
-          textAlign: 'center'
+          textAlign: 'center',
+          fontFamily: 'Arial',
+          fontSize: '12px',
+          fontWeight: 'normal'
         }}
         tagName='h5'
         html={this.state.text} // innerHTML of the editable div
