@@ -10,6 +10,12 @@ class TableCards extends Component {
 
     render() {
         let rows = [];
+        let headCell = [];
+        for (var j = 0; j < this.state.sizeCol; j++) {
+            let theadID = `cell${j}`
+            headCell.push(<th key={theadID} id={theadID}>{j+1}</th>)
+        }
+        rows.push(<tr>{headCell}</tr>)
         for (var i = 0; i < this.state.sizeRow; i++) {
             let rowID = `row${i}`
             let cell = []
