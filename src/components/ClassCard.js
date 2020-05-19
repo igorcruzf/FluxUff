@@ -5,7 +5,6 @@ import IconButton from '@material-ui/core/IconButton';
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ClassArrow from './ClassArrow.js'
 
 class ClassCard extends Component {
   constructor(props) {
@@ -36,13 +35,6 @@ class ClassCard extends Component {
     this.setState({text: 'Matéria', color: '#D3D3D3'});
   };
 
-  listener = () => {
-    let vetor = ClassArrow.state.idsArray;
-    vetor.push(this.id);
-    ClassArrow.setState({idsArray: vetor});
-    console.log(this.id);
-  }
-
   render() {
 
     return <Card style={{
@@ -53,7 +45,6 @@ class ClassCard extends Component {
       backgroundColor: this.state.color,
       }}
       id={this.id + 'card'}
-      onClick={this.listener}
       >
       <IconButton
         id={this.id + 'button-plus'}

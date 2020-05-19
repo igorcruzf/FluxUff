@@ -7,7 +7,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 class ClassArrow extends Component {
     constructor(props) {
         super(props);
-        this.state = { arrowArray: [], idsArray: [] }
+        this.state = { arrowArray: [], setIds: props.setIds, idsArray: props.idsArray}
     }
 
     createArrow = (a, b) => {
@@ -20,25 +20,23 @@ class ClassArrow extends Component {
                 borderWidth: 3
             }} /></div>)
         this.setState({ arrowArray: vetor });
+        console.log(vetor)
     }
 
-    getId(){
-        let flag = true;
-        while(flag){
-            if(this.state.idsArray.lenght() < 2){
-                flag = true;
-            }else{
-                this.createArrow(this.state.idsArray[0], this.state.idsArray[1]);
-                this.setState({idsArray: []});
-                flag = false;
-            }
+    getId() {
+        let vetor = this.state.idsArray
+        console.log(vetor)
+        if (vetor.length >= 2) {
+            console.log("entrou")
+            this.createArrow(vetor[0], vetor[1]);
+            this.state.setIds({ idsArray: vetor })
         }
     }
 
     render() {
         return (
             <div>
-                <IconButton size='small' onClick={this.getId} style={
+                <IconButton size='small' onClick={this.getId.bind(this)} style={
                     {
                         position: 'relative',
                         float: 'left'

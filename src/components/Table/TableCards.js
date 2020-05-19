@@ -5,7 +5,7 @@ class TableCards extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { sizeRow: 15, sizeCol: 15}
+        this.state = { sizeRow: 15, sizeCol: 15, setIds: props.setIds, idsArray: props.idsArray }
     }
 
     render() {
@@ -13,7 +13,7 @@ class TableCards extends Component {
         let headCell = [];
         for (var j = 0; j < this.state.sizeCol; j++) {
             let theadID = `cell${j}`
-            headCell.push(<th key={theadID} id={theadID}>{j+1}</th>)
+            headCell.push(<th key={theadID} id={theadID}>{j + 1}</th>)
         }
         rows.push(<tr>{headCell}</tr>)
         for (var i = 0; i < this.state.sizeRow; i++) {
@@ -21,7 +21,7 @@ class TableCards extends Component {
             let cell = []
             for (var idx = 0; idx < this.state.sizeCol; idx++) {
                 let cellID = `cell${i}-${idx}`
-                cell.push(<td key={cellID} id={cellID}><ClassCard id={cellID}/></td>)
+                cell.push(<td key={cellID} id={cellID} onClick={this.onClickHandler.bind(this, cellID)}><ClassCard id={cellID} /></td>)
             }
             rows.push(<tr key={i} id={rowID}>{cell}</tr>)
         }
@@ -31,6 +31,12 @@ class TableCards extends Component {
                     {rows}
                 </tbody>
             </table>)
+    }
+
+    onClickHandler(cellID) {
+        let vetor = this.state.idsArray;
+        vetor.push(cellID)
+        this.state.setIds({ idsArray: vetor })
     }
 
 }
