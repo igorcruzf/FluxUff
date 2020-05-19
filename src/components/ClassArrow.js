@@ -29,7 +29,7 @@ class ClassArrow extends Component {
         if (vetor.length >= 2) {
             console.log("entrou")
             this.createArrow(vetor[0], vetor[1]);
-            this.state.setIds({ idsArray: vetor })
+            this.state.setIds({ idsArray: vetor });
         }
     }
 

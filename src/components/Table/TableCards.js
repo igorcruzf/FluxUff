@@ -21,7 +21,7 @@ class TableCards extends Component {
             let cell = []
             for (var idx = 0; idx < this.state.sizeCol; idx++) {
                 let cellID = `cell${i}-${idx}`
-                cell.push(<td key={cellID} id={cellID} onClick={this.onClickHandler.bind(this, cellID)}><ClassCard id={cellID} /></td>)
+                cell.push(<td className={cellID} key={cellID} id={cellID} onClick={this.onClickHandler.bind(this, cellID)}><ClassCard id={cellID} /></td>)
             }
             rows.push(<tr key={i} id={rowID}>{cell}</tr>)
         }
