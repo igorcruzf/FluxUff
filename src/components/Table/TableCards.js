@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 import ClassCard from '../ClassCard.js';
 
+
+function onMouseEnterHandler(e) {
+    var idColumn = e.target.className
+    var column = document.getElementsByClassName(idColumn)
+    if(column.length !== 0)
+        for(var i = 0; i < column.length; i++){
+            column[i].style.opacity = '1';
+        }
+}
+
+function onMouseLeaveHandler(e) {
+    var idColumn = e.target.className
+    var column = document.getElementsByClassName(idColumn)
+    if(column.length !== 0)
+        for(var i = 0; i < column.length; i++){
+            column[i].style.opacity = '0';
+        }
+}
+
 class TableCards extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { sizeRow: 15, sizeCol: 15}
+        this.state = { sizeRow: 15, sizeCol: 15, style: {opacity:'0'}}
     }
 
     render() {
@@ -21,7 +40,7 @@ class TableCards extends Component {
             let cell = []
             for (var idx = 0; idx < this.state.sizeCol; idx++) {
                 let cellID = `cell${i}-${idx}`
-                cell.push(<td key={cellID} id={cellID}><ClassCard id={cellID}/></td>)
+                cell.push(<td className={idx} key={cellID} id={cellID} style={this.state.style} onMouseEnter = {onMouseEnterHandler} onMouseLeave = {onMouseLeaveHandler}><ClassCard id={cellID}/></td>)
             }
             rows.push(<tr key={i} id={rowID}>{cell}</tr>)
         }
