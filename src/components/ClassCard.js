@@ -30,8 +30,7 @@ function ClassCard(props) {
   }
 
   return (
-    <div
-      className={props.id}>
+    <div className={props.id}>
       <Card
         style={{
           display: "block",
