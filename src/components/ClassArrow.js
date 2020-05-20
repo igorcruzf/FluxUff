@@ -51,7 +51,7 @@ function ClassArrow(props) {
       >
         <FontAwesomeIcon icon={faArrowRight} />
       </IconButton>
-      {arrowArray}
+      {arrowArray.map((e) => <div>{e}</div>)}
     </div>
   );
 }
