@@ -31,6 +31,7 @@ function ClassCard(props) {
 
   return (
     <div className={props.id}>
+      {console.log("É aqui")}
       <Card
         style={{
           display: "block",
@@ -83,4 +84,4 @@ function ClassCard(props) {
   );
 }
 
-export default ClassCard;
+export default React.memo(ClassCard);
