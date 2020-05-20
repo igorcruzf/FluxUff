@@ -7,7 +7,7 @@ import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ClassCard(props) {
-  let [color, setColor] = useState("D3D3D3");
+  let [color, setColor] = useState("#D3D3D3");
   let [text, setText] = useState("Matéria");
 
   function handleChange(evt) {
@@ -30,54 +30,57 @@ function ClassCard(props) {
   }
 
   return (
-    <Card
-      style={{
-        display: "block",
-        width: "100px",
-        transitionDuration: "0.3s",
-        height: "60px",
-        backgroundColor: color,
-      }}
-      id={props.id + "card"}
-    >
-      <IconButton
-        id={props.id + "button-plus"}
-        onClick={able}
+    <div
+      className={props.id}>
+      <Card
         style={{
           display: "block",
-          margin: "0 auto",
-          marginTop: "6%",
+          width: "100px",
+          transitionDuration: "0.3s",
+          height: "60px",
+          backgroundColor: color,
         }}
+        id={props.id + "card"}
       >
-        <FontAwesomeIcon icon={faPlusCircle} />
-      </IconButton>
-      <IconButton
-        id={props.id + "button-minus"}
-        onClick={disable}
-        style={{
-          display: "none",
-          position: "absolute",
-        }}
-        size="small"
-      >
-        <FontAwesomeIcon icon={faMinusCircle} />
-      </IconButton>
-      <ContentEditable
-        id={props.id + "content"}
-        style={{
-          display: "none",
-          marginTop: "20%",
-          textAlign: "center",
-          fontFamily: "Arial",
-          fontSize: "12px",
-          fontWeight: "normal",
-        }}
-        tagName="h5"
-        html={text} // innerHTML of the editable div
-        disabled={false} // use true to disable edition
-        onChange={handleChange} // handle innerHTML
-      />
-    </Card>
+        <IconButton
+          id={props.id + "button-plus"}
+          onClick={able}
+          style={{
+            display: "block",
+            margin: "0 auto",
+            marginTop: "6%",
+          }}
+        >
+          <FontAwesomeIcon icon={faPlusCircle} />
+        </IconButton>
+        <IconButton
+          id={props.id + "button-minus"}
+          onClick={disable}
+          style={{
+            display: "none",
+            position: "absolute",
+          }}
+          size="small"
+        >
+          <FontAwesomeIcon icon={faMinusCircle} />
+        </IconButton>
+        <ContentEditable
+          id={props.id + "content"}
+          style={{
+            display: "none",
+            marginTop: "20%",
+            textAlign: "center",
+            fontFamily: "Arial",
+            fontSize: "12px",
+            fontWeight: "normal",
+          }}
+          tagName="h5"
+          html={text} // innerHTML of the editable div
+          disabled={false} // use true to disable edition
+          onChange={handleChange} // handle innerHTML
+        />
+      </Card>
+    </div>
   );
 }
 
