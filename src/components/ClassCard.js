@@ -39,7 +39,7 @@ function ClassCard(props) {
           height: "60px",
           backgroundColor: color,
         }}
-        id={props.id + "card"}
+        id={props.id}
       >
         <IconButton
           id={props.id + "button-plus"}

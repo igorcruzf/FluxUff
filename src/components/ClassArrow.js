@@ -17,7 +17,7 @@ function ClassArrow(props) {
           fromAnchor="right"
           toAnchor="left"
           style={{
-            delay: true,
+            delay: 0,
             borderColor: "#ddd",
             borderStyle: "solid",
             borderWidth: 3,
@@ -26,6 +26,7 @@ function ClassArrow(props) {
       </div>
     );
     setArrowArray(newArrowArray);
+    console.log(arrowArray)
   }
 
   function getId() {
@@ -33,7 +34,7 @@ function ClassArrow(props) {
     console.log(newArray);
     if (newArray.length >= 2) {
       console.log("entrou");
-      createArrow(newArray[0], newArray[1]);
+      createArrow(newArray[0] + "card", newArray[1] + "card");
       props.setIds([]);
     }
   }
