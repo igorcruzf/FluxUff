@@ -14,8 +14,10 @@ function TableCards(props) {
     />
 
   function onClickHandler(cellID) {
-    let vetor = [...props.idsArray, cellID];
-    props.setIds(vetor);
+    if(props.varFlag === true){
+      let vetor = [...props.idsArray, cellID];
+      props.setIds(vetor);
+    }
   }
 
   function render(){

@@ -31,7 +31,6 @@ function ClassCard(props) {
 
   return (
     <div className={props.id}>
-      {console.log("É aqui")}
       <Card
         style={{
           display: "block",

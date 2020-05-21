@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import IconButton from "@material-ui/core/IconButton";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
+
 function ClassArrow(props) {
   let [arrowArray, setArrowArray] = useState([]);
 
@@ -26,16 +27,29 @@ function ClassArrow(props) {
       </div>
     );
     setArrowArray(newArrowArray);
-    console.log(arrowArray)
   }
 
   function getId() {
+    props.setFlag(false);
     let newArray = props.idsArray;
-    console.log(newArray);
-    if (newArray.length >= 2) {
-      console.log("entrou");
-      createArrow(newArray[0] + "card", newArray[1] + "card");
-      props.setIds([]);
+    createArrow(newArray[0] + "card", newArray[1] + "card");
+    props.setIds([]);
+  }
+
+  function activateFlag(){
+    props.setFlag(true);
+  }
+
+  function listener(){
+    console.log("1")
+    if(props.varFlag === true){
+    setInterval(function() {
+      console.log(props.varFlag);
+        if(props.idsArray.length >= 2){
+          getId();
+          console.log("2");
+        }
+      },1000)
     }
   }
 
@@ -43,7 +57,7 @@ function ClassArrow(props) {
     <div>
       <IconButton
         size="small"
-        onClick={getId}
+        onClick={activateFlag}
         style={{
           position: "relative",
           float: "left",
@@ -52,6 +66,7 @@ function ClassArrow(props) {
         <FontAwesomeIcon icon={faArrowRight} />
       </IconButton>
       {arrowArray.map((e) => <div>{e}</div>)}
+      {listener()}
     </div>
   );
 }
