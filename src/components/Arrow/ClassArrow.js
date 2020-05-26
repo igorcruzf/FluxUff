@@ -14,6 +14,13 @@ function ClassArrow(props) {
   });
 
   function createArrow(a, b) {
+    let a_aux = a.split("-");
+    let b_aux = b.split("-");
+    if (a_aux[1] > b_aux[1]) {
+      let c = a;
+      a = b;
+      b = c;
+    }
     let newArrowArray = arrowArray;
     newArrowArray.push(
       <div id={a + b}>
