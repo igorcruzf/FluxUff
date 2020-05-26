@@ -9,16 +9,18 @@ function CreateArrowButton(props) {
   }
 
   return (
-    <IconButton
-      size="small"
-      onClick={activateFlag}
-      style={{
-        position: "relative",
-        float: "left",
-      }}
-    >
-      <FontAwesomeIcon icon={faArrowRight} />
-    </IconButton>
+    <div>
+      <IconButton
+        size="small"
+        onClick={activateFlag}
+        style={{
+          position: "relative",
+          float: "left",
+        }}
+      >
+        <FontAwesomeIcon icon={faArrowRight} />
+      </IconButton>
+    </div>
   );
 }
 

@@ -23,8 +23,8 @@ function ClassArrow(props) {
       a = b;
       b = c;
     }
-    if(a_aux[1] === b_aux[1]){
-      if(a < b){
+    if (a_aux[1] === b_aux[1]) {
+      if (a < b) {
         fromAnchor = "bottom"
         toAnchor = "top"
       }
@@ -46,6 +46,7 @@ function ClassArrow(props) {
           borderStyle="solid"
           borderWidth="1"
         />
+
       </div>
     );
     setArrowArray(newArrowArray);
@@ -54,7 +55,14 @@ function ClassArrow(props) {
   return (
     <div>
       {arrowArray.map((e) => (
-        <div>{e}</div>
+        <div>
+          {e}
+          <svg viewBox="200 220 100 100" style={{position:'absolute'}}>
+            <polygon x="0" y="0" points="168 75,161 80,161 70"
+              style={{ fill: "#1C1C1C", stroke: "#1C1C1C", strokeWidth: "2", fillRule: "evenodd" }} />
+          </svg>
+        </div>
+
       ))}
     </div>
   );
