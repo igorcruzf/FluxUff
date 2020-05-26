@@ -42,12 +42,9 @@ function ClassArrow(props) {
           fromAnchor={fromAnchor}
           toAnchor={toAnchor}
           orientation="h"
-          style={{
-            delay: 0,
-            borderColor: "#1C1C1C",
-            borderStyle: "solid",
-            borderWidth: 3,
-          }}
+          borderColor="#1C1C1C"
+          borderStyle="solid"
+          borderWidth="1"
         />
       </div>
     );
