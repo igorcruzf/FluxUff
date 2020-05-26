@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TableCards from "./Table/TableCards";
-import ClassArrow from "../components/ClassArrow";
+import ClassArrow from "./Arrow/ClassArrow";
+import CreateArrowButtom from "./Arrow/CreateArrowButton";
 
 function TableCardContainer() {
   const [ids, setIds] = useState([]);
@@ -8,8 +9,19 @@ function TableCardContainer() {
 
   return (
     <div>
-      <ClassArrow setIds={setIds} idsArray={ids} setFlag={setFlag} varFlag={flag}/>
-      <TableCards setIds={setIds} idsArray={ids} setFlag={setFlag} varFlag={flag} />
+      <CreateArrowButtom setFlag={setFlag} varFlag={flag} />
+      <ClassArrow
+        setIds={setIds}
+        idsArray={ids}
+        setFlag={setFlag}
+        varFlag={flag}
+      />
+      <TableCards
+        setIds={setIds}
+        idsArray={ids}
+        setFlag={setFlag}
+        varFlag={flag}
+      />
     </div>
   );
 }

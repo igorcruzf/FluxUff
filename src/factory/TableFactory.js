@@ -1,5 +1,5 @@
 import React from "react";
-import ClassCard from "../components/ClassCard.js";
+import ClassCard from "../components/Card/ClassCard.js";
 
 function TableFactory(props) {
   return (
