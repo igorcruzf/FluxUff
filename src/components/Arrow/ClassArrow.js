@@ -29,9 +29,10 @@ function ClassArrow(props) {
           to={b}
           fromAnchor="right"
           toAnchor="left"
+          orientation="h"
           style={{
             delay: 0,
-            borderColor: "#ddd",
+            borderColor: "#1C1C1C",
             borderStyle: "solid",
             borderWidth: 3,
           }}
