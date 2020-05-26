@@ -39,8 +39,8 @@ function ClassArrow(props) {
         <SteppedLineTo
           from={a}
           to={b}
-          fromAnchor="right"
-          toAnchor="left"
+          fromAnchor={fromAnchor}
+          toAnchor={toAnchor}
           orientation="h"
           style={{
             delay: 0,
