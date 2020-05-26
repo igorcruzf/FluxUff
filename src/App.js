@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import Header from "./components/Header/Header.js";
-import TableCardContainer from "./components/TableCardContainer";
+import Header from "./components/Header.js";
+import FlowchartContainer from "./components/FlowchartContainer";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
         classProgram="Bacharelado em Ciência da Computação"
         workload="3200 horas"
       />
-      <TableCardContainer />
+      <FlowchartContainer />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import TableCards from "./Table/TableCards";
+import TableCards from "./CardArea/TableCards";
 import ClassArrow from "./Arrow/ClassArrow";
 import CreateArrowButtom from "./Arrow/CreateArrowButton";
 
-function TableCardContainer() {
+function FlowchartContainer() {
   const [ids, setIds] = useState([]);
   const [flag, setFlag] = useState(false);
 
@@ -26,4 +26,4 @@ function TableCardContainer() {
   );
 }
 
-export default TableCardContainer;
+export default FlowchartContainer;
