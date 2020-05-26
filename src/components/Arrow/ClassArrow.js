@@ -16,10 +16,22 @@ function ClassArrow(props) {
   function createArrow(a, b) {
     let a_aux = a.split("-");
     let b_aux = b.split("-");
+    let fromAnchor = "right";
+    let toAnchor = "left";
     if (a_aux[1] > b_aux[1]) {
       let c = a;
       a = b;
       b = c;
+    }
+    if(a_aux[1] === b_aux[1]){
+      if(a < b){
+        fromAnchor = "bottom"
+        toAnchor = "top"
+      }
+      else {
+        fromAnchor = "top"
+        toAnchor = "bottom"
+      }
     }
     let newArrowArray = arrowArray;
     newArrowArray.push(
@@ -27,8 +39,8 @@ function ClassArrow(props) {
         <SteppedLineTo
           from={a}
           to={b}
-          fromAnchor="right"
-          toAnchor="left"
+          fromAnchor={fromAnchor}
+          toAnchor={toAnchor}
           style={{
             delay: 0,
             borderColor: "#ddd",
