@@ -2,6 +2,8 @@ import React from "react";
 import ClassCard from "../CardArea/ClassCard.js";
 
 function TableFactory(props) {
+
+
   return (
     <table id="table-of-cards" cellPadding="30%">
       <thead key={"thead-table-cards"}>
