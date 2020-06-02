@@ -5,8 +5,8 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 function CreateArrowButton(props) {
   function activateFlag() {
-    props.setXPos("250");
-    props.setYPos("50");
+    props.setXPos("250");//aqui tem que passar a posição x do card
+    props.setYPos("50"); //e aqui a y
     props.setFlagArrow(true);
   }
 
