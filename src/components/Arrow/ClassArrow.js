@@ -40,7 +40,7 @@ function ClassArrow(props) {
     switch (toAnchor) {
       case "left":
         console.log(elem.style.height)
-        posTipLeft = (pos.left-5);
+        posTipLeft = (pos.left-9);
         posTipTop = (pos.top+25);
         newTipArray.push(
           <svg style={{ position: 'absolute', top: posTipTop+"px", left: posTipLeft+"px", width: '20px', height: '20px' }}>
@@ -66,7 +66,7 @@ function ClassArrow(props) {
         newTipArray.push(
           <svg style={{ position: 'absolute', top: posTipTop+"px", left: posTipLeft+"px", width: '20px', height: '20px'}}>
             <polygon points="6 1,1 11,11 11"
-              style={{ fill: "#1C1C1C", stroke: "#1C1C1C", strokeWidth: "2" }} />
+              style={{ fill: "#1C1C1C", stroke: "#1C1C1C", strokeWidth: "2px" }} />
           </svg>
         );
         break;
