@@ -11,6 +11,7 @@ function App() {
         workload="3200 horas"
       />
       <FlowchartContainer />
+
     </div>
   );
 }
