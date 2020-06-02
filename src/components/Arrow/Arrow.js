@@ -1,27 +1,33 @@
 import React, { useState } from "react";
 
-function Arrow() {
-  let [xPos, setXPos] = useState("50");
-  let [yPos, setYPos] = useState("50");
+function Arrow(props) {
+  let [lXPos, setLXPos] = useState();
+  let [lYPos, setLYPos] = useState();
+  let [mXPos, setMXPos] = useState(props.xPos);
+  let [mYPos, setMYPos] = useState(props.yPos);
   let [path, setPath] = useState();
   let [pathArray, setPathArray] = useState([]);
   let [axis, setAxis] = useState("x");
-  let [create, setCreate] = useState(true); // para finalizar a seta dps
 
   function onmousemove(e) {
     let bounds = e.target.getBoundingClientRect();
     let x = e.clientX - bounds.left;
     let y = e.clientY - bounds.top;
-    setXPos(x);
-    setYPos(y);
-    if (axis === "x") setPath(`M 250 50 l ${xPos - 250} 0`);
-    else setPath(`M 250 50 l 0 ${yPos - 50}`);
+    setLXPos(x);
+    setLYPos(y);
+    if (axis === "x") setPath(`M ${mXPos} ${mYPos} l ${lXPos - mXPos} 0`);
+    else setPath(`M ${mXPos} ${mYPos} l 0 ${lYPos - mYPos}`);
   }
 
   function onclick() {
     setPathArray([...pathArray, path]);
-    if (axis === "x") setAxis("y");
-    else setAxis("x");
+    if (axis === "x") {
+      setAxis("y");
+      setMXPos(lXPos);
+    } else {
+      setAxis("x");
+      setMYPos(lYPos);
+    }
   }
 
   return (

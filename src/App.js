@@ -2,17 +2,15 @@ import React from "react";
 import "./App.css";
 import Header from "./components/Header.js";
 import FlowchartContainer from "./components/FlowchartContainer";
-import Arrow from './components/Arrow/Arrow';
 
 function App() {
   return (
     <div className="App">
-      {/* <Header
+      <Header
         classProgram="Bacharelado em Ciência da Computação"
         workload="3200 horas"
       />
-      <FlowchartContainer /> */}
-      <Arrow/>
+      <FlowchartContainer />
 
     </div>
   );

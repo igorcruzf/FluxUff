@@ -5,7 +5,9 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 function CreateArrowButton(props) {
   function activateFlag() {
-    props.setFlag(true);
+    props.setXPos("250");
+    props.setYPos("50");
+    props.setFlagArrow(true);
   }
 
   return (
