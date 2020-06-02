@@ -4,6 +4,7 @@ import ContentEditable from "react-contenteditable";
 import IconButton from "@material-ui/core/IconButton";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function ClassCard(props) {
@@ -42,9 +43,29 @@ function ClassCard(props) {
   }
 
   function invisible() {
-    if(!ableFlag)
+    if (!ableFlag)
       setOpacity(0.5);
   }
+
+  function getPosicaoElemento() {
+    var offsetTrail = document.getElementById(props.id);
+    var offsetLeft = 0;
+    var offsetTop = 0;
+    while (offsetTrail) {
+      offsetLeft += offsetTrail.offsetLeft;
+      offsetTop += offsetTrail.offsetTop;
+      offsetTrail = offsetTrail.offsetParent;
+    }
+    if (navigator.userAgent.indexOf("Mac") !== -1 &&
+      typeof document.body.leftMargin != "undefined") {
+      offsetLeft += document.body.leftMargin;
+      offsetTop += document.body.topMargin;
+    }
+    props.setXPos(offsetLeft);//aqui tem que passar a posição x do card
+    props.setYPos(offsetTop); //e aqui a y
+    props.setFlagArrow(true);
+  }
+
   return (
     <div className={props.id} onMouseEnter={visible} onMouseLeave={invisible}>
       <Card
@@ -79,6 +100,17 @@ function ClassCard(props) {
           size="small"
         >
           <FontAwesomeIcon icon={faMinusCircle} />
+        </IconButton>
+        <IconButton
+          size="small"
+          onClick={getPosicaoElemento}
+          style={{
+            display: displayMinus,
+            position: "absolute",
+            marginLeft: '80px'
+          }}
+        >
+          <FontAwesomeIcon icon={faArrowRight} />
         </IconButton>
         <ContentEditable
           id={props.id + "content"}

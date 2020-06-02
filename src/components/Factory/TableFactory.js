@@ -23,7 +23,7 @@ function TableFactory(props) {
                 id={`cell${i}-${j}`}
                 onClick={() => props.onClickHandler(`cell${i}-${j}`)}
               >
-                <ClassCard key={`cell${i}-${j}card`} id={`cell${i}-${j}card`} />
+                <ClassCard key={`cell${i}-${j}card`} id={`cell${i}-${j}card`} setXPos={props.setXPos} setYPos={props.setYPos} setFlagArrow={props.setFlagArrow} />
               </td>
             ))}
           </tr>
