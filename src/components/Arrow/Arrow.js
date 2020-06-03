@@ -13,13 +13,45 @@ function Arrow(props) {
   )
 
   function onmousemove(e) {
-    let bounds = e.target.getBoundingClientRect();
-    let x = e.clientX - bounds.left;
-    let y = e.clientY - bounds.top;
-    setLXPos(x);
-    setLYPos(y);
-    if (axis === "x") setPath(`M ${mXPos} ${mYPos} l ${lXPos - mXPos} 0`);
-    else setPath(`M ${mXPos} ${mYPos} l 0 ${lYPos - mYPos}`);
+    if(props.flagArrow === true){
+      let bounds = e.target.getBoundingClientRect();
+      let x = e.clientX - bounds.left;
+      let y = e.clientY - bounds.top;
+      setLXPos(x);
+      setLYPos(y);
+      let posXSeta;
+      let posYSeta;
+      if(lYPos >= props.yPos+60){
+        setMXPos(props.xPos+50);
+        setMYPos(props.yPos+60);
+        posYSeta = props.yPos+90;
+        setAxis('y');
+      }else if(lYPos <= props.yPos){
+        setMXPos(props.xPos+50);
+        setMYPos(props.yPos);
+        posYSeta = props.yPos-30;
+        setAxis('y');
+      }else if(lYPos >= props.yPos && lYPos <= props.yPos+60){
+        setMXPos(props.xPos+100);
+        setMYPos(lYPos);
+        posXSeta = props.xPos+130;
+        setAxis('x');
+      }
+
+      if (axis === "x"){
+        setPath(`M ${mXPos} ${mYPos} l ${posXSeta - mXPos} 0`)
+      }else {setPath(`M ${mXPos} ${mYPos} l 0 ${posYSeta - mYPos}`)};
+    }else{
+      let bounds = e.target.getBoundingClientRect();
+      let x = e.clientX - bounds.left;
+      let y = e.clientY - bounds.top;
+      setLXPos(x);
+      setLYPos(y);
+
+      if (axis === "x"){
+        setPath(`M ${mXPos} ${mYPos} l ${lXPos - mXPos} 0`)
+      }else {setPath(`M ${mXPos} ${mYPos} l 0 ${lYPos - mYPos}`)};
+    }
   }
 
   function onclick() {
