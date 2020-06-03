@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TableCards from "./CardArea/TableCards";
 import Arrow from "./Arrow/Arrow";
-import CreateArrowButtom from "./Arrow/CreateArrowButton";
 
 function FlowchartContainer() {
   const [idsArray, setIdsArray] = useState();
@@ -11,12 +10,6 @@ function FlowchartContainer() {
 
   return (
     <div>
-      <CreateArrowButtom
-        setFlagArrow={setFlagArrow}
-        flagArrow={flagArrow}
-        setXPos={setXPos}
-        setYPos={setYPos}
-      />
       {flagArrow && (
         <Arrow
           xPos={xPos}
