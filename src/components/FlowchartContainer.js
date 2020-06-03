@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import TableCards from "./CardArea/TableCards";
 import Arrow from "./Arrow/Arrow";
 import ArrowArray from "./Arrow/ArrowArray";
@@ -13,8 +13,8 @@ function FlowchartContainer() {
 
   return (
     <div>
-      {flagArrow && 
-      <Arrow
+      {flagArrow && (
+        <Arrow
           xPos={xPos}
           yPos={yPos}
           setFlagArrow={setFlagArrow}
@@ -23,10 +23,12 @@ function FlowchartContainer() {
           setArrowArray={setArrowArray}
           cardClicked={cardClicked}
           setCardClicked={setCardClicked}
-        />}
-        {!flagArrow && <ArrowArray arrowArray={arrowArray} setArrowArray={setArrowArray} />
-}
-      
+        />
+      )}
+      {!flagArrow && (
+        <ArrowArray arrowArray={arrowArray} setArrowArray={setArrowArray} />
+      )}
+
       <TableCards
         setIds={setIdsArray}
         idsArray={idsArray}

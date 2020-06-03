@@ -10,7 +10,7 @@ function Arrow(props) {
   let [axis, setAxis] = useState("x");
 
   function onmousemove(e) {
-    if(props.flagArrow === true){
+    if (props.flagArrow === true) {
       let bounds = e.target.getBoundingClientRect();
       let x = e.clientX - bounds.left;
       let y = e.clientY - bounds.top;
@@ -18,36 +18,40 @@ function Arrow(props) {
       setLYPos(y);
       let posXSeta;
       let posYSeta;
-      if(lYPos >= props.yPos+60){
-        setMXPos(props.xPos+50);
-        setMYPos(props.yPos+60);
-        posYSeta = props.yPos+90;
-        setAxis('y');
-      }else if(lYPos <= props.yPos){
-        setMXPos(props.xPos+50);
+      if (lYPos >= props.yPos + 60) {
+        setMXPos(props.xPos + 50);
+        setMYPos(props.yPos + 60);
+        posYSeta = props.yPos + 90;
+        setAxis("y");
+      } else if (lYPos <= props.yPos) {
+        setMXPos(props.xPos + 50);
         setMYPos(props.yPos);
-        posYSeta = props.yPos-30;
-        setAxis('y');
-      }else if(lYPos >= props.yPos && lYPos <= props.yPos+60){
-        setMXPos(props.xPos+100);
+        posYSeta = props.yPos - 30;
+        setAxis("y");
+      } else if (lYPos >= props.yPos && lYPos <= props.yPos + 60) {
+        setMXPos(props.xPos + 100);
         setMYPos(lYPos);
-        posXSeta = props.xPos+130;
-        setAxis('x');
+        posXSeta = props.xPos + 130;
+        setAxis("x");
       }
 
-      if (axis === "x"){
-        setPath(`M ${mXPos} ${mYPos} l ${posXSeta - mXPos} 0`)
-      }else {setPath(`M ${mXPos} ${mYPos} l 0 ${posYSeta - mYPos}`)};
-    }else{
+      if (axis === "x") {
+        setPath(`M ${mXPos} ${mYPos} l ${posXSeta - mXPos} 0`);
+      } else {
+        setPath(`M ${mXPos} ${mYPos} l 0 ${posYSeta - mYPos}`);
+      }
+    } else {
       let bounds = e.target.getBoundingClientRect();
       let x = e.clientX - bounds.left;
       let y = e.clientY - bounds.top;
       setLXPos(x);
       setLYPos(y);
 
-      if (axis === "x"){
-        setPath(`M ${mXPos} ${mYPos} l ${lXPos - mXPos} 0`)
-      }else {setPath(`M ${mXPos} ${mYPos} l 0 ${lYPos - mYPos}`)};
+      if (axis === "x") {
+        setPath(`M ${mXPos} ${mYPos} l ${lXPos - mXPos} 0`);
+      } else {
+        setPath(`M ${mXPos} ${mYPos} l 0 ${lYPos - mYPos}`);
+      }
     }
   }
 
@@ -60,7 +64,7 @@ function Arrow(props) {
       setAxis("x");
       setMYPos(lYPos);
     }
-    endArrow()
+    endArrow();
   }
 
   function endArrow() {
@@ -69,14 +73,14 @@ function Arrow(props) {
       arrows.push(render());
       props.setArrowArray(arrows);
       props.setCardClicked(false);
-      props.setFlagArrow(false);   
+      props.setFlagArrow(false);
       console.log("why god");
     }
   }
 
   function render() {
     return (
-      <div id = "arrow">
+      <div id="arrow">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           style={{
