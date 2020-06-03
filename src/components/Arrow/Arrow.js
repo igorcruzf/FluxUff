@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 function Arrow(props) {
   let [lXPos, setLXPos] = useState();
@@ -8,9 +8,6 @@ function Arrow(props) {
   let [path, setPath] = useState();
   let [pathArray, setPathArray] = useState([]);
   let [axis, setAxis] = useState("x");
-
-  useEffect( () => endArrow()
-  )
 
   function onmousemove(e) {
     if(props.flagArrow === true){
@@ -63,6 +60,7 @@ function Arrow(props) {
       setAxis("x");
       setMYPos(lYPos);
     }
+    endArrow()
   }
 
   function endArrow() {
@@ -70,7 +68,8 @@ function Arrow(props) {
       let arrows = props.arrowArray;
       arrows.push(render());
       props.setArrowArray(arrows);
-      props.setCardClicked(false);   
+      props.setCardClicked(false);
+      props.setFlagArrow(false);   
       console.log("why god");
     }
   }
@@ -120,4 +119,4 @@ function Arrow(props) {
   return render();
 }
 
-export default React.memo(Arrow);
+export default Arrow;
