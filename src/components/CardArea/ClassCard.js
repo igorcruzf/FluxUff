@@ -13,7 +13,7 @@ function ClassCard(props) {
   let [displayPlus, setDisplayPlus] = useState("block");
   let [displayMinus, setDisplayMinus] = useState("none");
   let [displayContent, setDisplayContent] = useState("none");
-  let [ableFlag, setAbleFlag] = useState(false)
+  let [ableFlag, setAbleFlag] = useState(false);
 
   let [opacity, setOpacity] = useState(0.5);
 
@@ -43,8 +43,7 @@ function ClassCard(props) {
   }
 
   function invisible() {
-    if (!ableFlag)
-      setOpacity(0.5);
+    if (!ableFlag) setOpacity(0.5);
   }
 
   function getPosicaoElemento() {
@@ -56,16 +55,17 @@ function ClassCard(props) {
       offsetTop += offsetTrail.offsetTop;
       offsetTrail = offsetTrail.offsetParent;
     }
-    if (navigator.userAgent.indexOf("Mac") !== -1 &&
-      typeof document.body.leftMargin != "undefined") {
+    if (
+      navigator.userAgent.indexOf("Mac") !== -1 &&
+      typeof document.body.leftMargin != "undefined"
+    ) {
       offsetLeft += document.body.leftMargin;
       offsetTop += document.body.topMargin;
     }
-    props.setXPos(offsetLeft);//aqui tem que passar a posição x do card
+    props.setXPos(offsetLeft); //aqui tem que passar a posição x do card
     props.setYPos(offsetTop); //e aqui a y
     props.setFlagArrow(true);
   }
-
   return (
     <div className={props.id} onMouseEnter={visible} onMouseLeave={invisible}>
       <Card
@@ -107,7 +107,7 @@ function ClassCard(props) {
           style={{
             display: displayMinus,
             position: "absolute",
-            marginLeft: '80px'
+            marginLeft: "80px",
           }}
         >
           <FontAwesomeIcon icon={faArrowRight} />

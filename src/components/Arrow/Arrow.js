@@ -9,6 +9,16 @@ function Arrow(props) {
   let [pathArray, setPathArray] = useState([]);
   let [axis, setAxis] = useState("x");
 
+  function init(){
+    setLXPos();
+    setLYPos();
+    setMXPos(props.xPos)
+    setMYPos(props.yPos)
+    setPath()
+    setPathArray([])
+    setAxis("x")
+  }
+
   function onmousemove(e) {
     let bounds = e.target.getBoundingClientRect();
     let x = e.clientX - bounds.left;
@@ -21,6 +31,7 @@ function Arrow(props) {
 
   function onclick() {
     setPathArray([...pathArray, path]);
+    endArrow();
     if (axis === "x") {
       setAxis("y");
       setMXPos(lXPos);
@@ -30,46 +41,61 @@ function Arrow(props) {
     }
   }
 
-  return (
-    <div>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        style={{
-          left: "0px",
-          top: "0px",
-          width: "100%",
-          height: "100%",
-          display: "block",
-          minWidth: "2429px",
-          minHeight: "1679px",
-          position: "absolute",
-          backgroundImage: "none",
-        }}
-        onMouseMove={onmousemove}
-        onClick={onclick}
-      >
-        <defs>
-          <marker
-            id="arrowhead"
-            markerWidth="10"
-            markerHeight="7"
-            refX="0"
-            refY="3.5"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3.5, 0 7" />
-          </marker>
-        </defs>
-        <path
-          d={pathArray.join(" ") + path}
-          stroke="#000"
-          strokeWidth="1"
-          fill="none"
-          markerEnd="url(#arrowhead)"
-        />
-      </svg>
-    </div>
-  );
+  function endArrow() {
+    if (props.cardClicked) {
+      let arrows = props.arrowArray;
+      arrows.push(render());
+      props.setArrowArray(arrows);
+      props.setCardClicked(false);
+      props.setFlagArrow(false);
+      console.log(arrows);
+      init()
+    }
+  }
+
+  function render() {
+    return (
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          style={{
+            left: "0px",
+            top: "0px",
+            width: "100%",
+            height: "100%",
+            display: "block",
+            minWidth: "2429px",
+            minHeight: "1679px",
+            position: "absolute",
+            backgroundImage: "none",
+          }}
+          onMouseMove={onmousemove}
+          onClick={onclick}
+        >
+          <defs>
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="7"
+              refX="0"
+              refY="3.5"
+              orient="auto"
+            >
+              <polygon points="0 0, 10 3.5, 0 7" />
+            </marker>
+          </defs>
+          <path
+            d={pathArray.join(" ") + path}
+            stroke="#000"
+            strokeWidth="1"
+            fill="none"
+            markerEnd="url(#arrowhead)"
+          />
+        </svg>
+      </div>
+    );
+  }
+  return render();
 }
 
 export default Arrow;
