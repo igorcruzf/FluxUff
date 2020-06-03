@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function Arrow(props) {
   let [lXPos, setLXPos] = useState();
@@ -9,15 +9,8 @@ function Arrow(props) {
   let [pathArray, setPathArray] = useState([]);
   let [axis, setAxis] = useState("x");
 
-  function init(){
-    setLXPos();
-    setLYPos();
-    setMXPos(props.xPos)
-    setMYPos(props.yPos)
-    setPath()
-    setPathArray([])
-    setAxis("x")
-  }
+  useEffect( () => endArrow()
+  )
 
   function onmousemove(e) {
     let bounds = e.target.getBoundingClientRect();
@@ -31,7 +24,6 @@ function Arrow(props) {
 
   function onclick() {
     setPathArray([...pathArray, path]);
-    endArrow();
     if (axis === "x") {
       setAxis("y");
       setMXPos(lXPos);
@@ -46,16 +38,14 @@ function Arrow(props) {
       let arrows = props.arrowArray;
       arrows.push(render());
       props.setArrowArray(arrows);
-      props.setCardClicked(false);
-      props.setFlagArrow(false);
-      console.log(arrows);
-      init()
+      props.setCardClicked(false);   
+      console.log("why god");
     }
   }
 
   function render() {
     return (
-      <div>
+      <div id = "arrow">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           style={{
@@ -98,4 +88,4 @@ function Arrow(props) {
   return render();
 }
 
-export default Arrow;
+export default React.memo(Arrow);
