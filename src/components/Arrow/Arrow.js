@@ -19,12 +19,12 @@ function Arrow(props) {
   }
 
   useEffect(() => {
-    if (!initialArrowPos) arrowPath();
+    if (!initialArrowPos) arrowPath([lXPos - mXPos], [lYPos - mYPos]);
   });
 
-  function arrowPath() {
-    if (axis === "x") setPath(`M ${mXPos} ${mYPos} l ${lXPos - mXPos} 0`);
-    else setPath(`M ${mXPos} ${mYPos} l 0 ${lYPos - mYPos}`);
+  function arrowPath(horizontal, vertical) {
+    if (axis === "x") setPath(`M ${mXPos} ${mYPos} h ${horizontal}`);
+    else setPath(`M ${mXPos} ${mYPos} v ${vertical}`);
   }
 
   function onmousemove(e) {
@@ -73,11 +73,13 @@ function Arrow(props) {
       setAxis("x");
     }
 
-    if (axis === "x") {
-      setPath(`M ${mXPos} ${mYPos} l ${posXArrow - mXPos} 0`);
-    } else {
-      setPath(`M ${mXPos} ${mYPos} l 0 ${posYArrow - mYPos}`);
-    }
+    arrowPath([posXArrow - mXPos], [posYArrow - mYPos])
+
+    // if (axis === "x") {
+    //   setPath(`M ${mXPos} ${mYPos} H ${posXArrow - mXPos}`);
+    // } else {
+    //   setPath(`M ${mXPos} ${mYPos} V ${posYArrow - mYPos}`);
+    // }
   }
 
   function endArrow() {
