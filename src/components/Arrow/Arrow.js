@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function Arrow(props) {
-  //left and right points of arrow
+  //arrow's left and right points
   let [lXPos, setLXPos] = useState();
   let [lYPos, setLYPos] = useState();
   let [mXPos, setMXPos] = useState(props.xPos);
@@ -9,9 +9,9 @@ function Arrow(props) {
   //lines that create an arrow
   let [path, setPath] = useState();
   let [pathArray, setPathArray] = useState([]);
-  //axis of current arrow path
+  //current arrow path's axis
   let [axis, setAxis] = useState("x");
-  //boolean used to define if it's creating initial position or not
+  //boolean that define if it's setting initial position or not
   let [initialArrowPos, setInitialArrowPos] = useState(true);
 
   useEffect(() => {
