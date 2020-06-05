@@ -25,7 +25,7 @@ function FlowchartContainer() {
           setCardClicked={setCardClicked}
         />
       )}
-      {!flagArrow && (
+      {(
         <ArrowArray arrowArray={arrowArray} setArrowArray={setArrowArray} />
       )}
 

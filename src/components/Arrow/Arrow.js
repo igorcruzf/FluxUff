@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Arrow(props) {
   let [lXPos, setLXPos] = useState();
@@ -8,69 +8,82 @@ function Arrow(props) {
   let [path, setPath] = useState();
   let [pathArray, setPathArray] = useState([]);
   let [axis, setAxis] = useState("x");
+  let [initialArrowPos, setInitialArrowPos] = useState(true);
+
+  function arrowPosition(e) {
+    let bounds = e.target.getBoundingClientRect();
+    let x = e.clientX - bounds.left;
+    let y = e.clientY - bounds.top;
+    setLXPos(x);
+    setLYPos(y);
+  }
+
+  useEffect(() => {
+    if (!initialArrowPos) arrowPath();
+  });
+
+  function arrowPath() {
+    if (axis === "x") setPath(`M ${mXPos} ${mYPos} l ${lXPos - mXPos} 0`);
+    else setPath(`M ${mXPos} ${mYPos} l 0 ${lYPos - mYPos}`);
+  }
 
   function onmousemove(e) {
     if (props.flagArrow === true) {
-      let bounds = e.target.getBoundingClientRect();
-      let x = e.clientX - bounds.left;
-      let y = e.clientY - bounds.top;
-      setLXPos(x);
-      setLYPos(y);
-      let posXSeta;
-      let posYSeta;
-      if (lYPos >= props.yPos + 60) {
-        setMXPos(props.xPos + 50);
-        setMYPos(props.yPos + 60);
-        posYSeta = props.yPos + 90;
-        setAxis("y");
-      } else if (lYPos <= props.yPos) {
-        setMXPos(props.xPos + 50);
-        setMYPos(props.yPos);
-        posYSeta = props.yPos - 30;
-        setAxis("y");
-      } else if (lYPos >= props.yPos && lYPos <= props.yPos + 60) {
-        setMXPos(props.xPos + 100);
-        setMYPos(lYPos);
-        posXSeta = props.xPos + 130;
-        setAxis("x");
-      }
-
-      if (axis === "x") {
-        setPath(`M ${mXPos} ${mYPos} l ${posXSeta - mXPos} 0`);
-      } else {
-        setPath(`M ${mXPos} ${mYPos} l 0 ${posYSeta - mYPos}`);
-      }
-    } else {
-      let bounds = e.target.getBoundingClientRect();
-      let x = e.clientX - bounds.left;
-      let y = e.clientY - bounds.top;
-      setLXPos(x);
-      setLYPos(y);
-
-      if (axis === "x") {
-        setPath(`M ${mXPos} ${mYPos} l ${lXPos - mXPos} 0`);
-      } else {
-        setPath(`M ${mXPos} ${mYPos} l 0 ${lYPos - mYPos}`);
+      arrowPosition(e);
+      if (initialArrowPos) {
+        initialPosition();
       }
     }
   }
 
-  function onclick() {
-    setPathArray([...pathArray, path]);
-    if (axis === "x") {
-      setAxis("y");
-      setMXPos(lXPos);
+  function onclick(e) {
+    if (initialArrowPos) {
+      setInitialArrowPos(false);
     } else {
-      setAxis("x");
-      setMYPos(lYPos);
+      setPathArray([...pathArray, path]);
+      if (axis === "x") {
+        setAxis("y");
+        setMXPos(lXPos);
+      } else {
+        setAxis("x");
+        setMYPos(lYPos);
+      }
+      arrowPosition(e);
+      endArrow();
     }
-    endArrow();
+  }
+
+  function initialPosition() {
+    let posXArrow;
+    let posYArrow;
+    if (lYPos >= props.yPos + 60) {
+      setMXPos(props.xPos + 50);
+      setMYPos(props.yPos + 60);
+      posYArrow = props.yPos + 90;
+      setAxis("y");
+    } else if (lYPos <= props.yPos) {
+      setMXPos(props.xPos + 50);
+      setMYPos(props.yPos);
+      posYArrow = props.yPos - 30;
+      setAxis("y");
+    } else if (lYPos >= props.yPos && lYPos <= props.yPos + 60) {
+      setMXPos(props.xPos + 100);
+      setMYPos(lYPos);
+      posXArrow = props.xPos + 130;
+      setAxis("x");
+    }
+
+    if (axis === "x") {
+      setPath(`M ${mXPos} ${mYPos} l ${posXArrow - mXPos} 0`);
+    } else {
+      setPath(`M ${mXPos} ${mYPos} l 0 ${posYArrow - mYPos}`);
+    }
   }
 
   function endArrow() {
     if (props.cardClicked) {
       let arrows = props.arrowArray;
-      arrows.push(render());
+      arrows.push(new render(console.log("oi"), console.log("oi")));
       props.setArrowArray(arrows);
       props.setCardClicked(false);
       props.setFlagArrow(false);
@@ -78,7 +91,7 @@ function Arrow(props) {
     }
   }
 
-  function render() {
+  function render(onclick, onmousemove) {
     return (
       <div id="arrow">
         <svg
@@ -120,7 +133,7 @@ function Arrow(props) {
       </div>
     );
   }
-  return render();
+  return render(onclick, onmousemove);
 }
 
 export default Arrow;
