@@ -1,15 +1,24 @@
 import React, { useEffect, useState } from "react";
 
 function Arrow(props) {
+  //left and right points of arrow
   let [lXPos, setLXPos] = useState();
   let [lYPos, setLYPos] = useState();
   let [mXPos, setMXPos] = useState(props.xPos);
   let [mYPos, setMYPos] = useState(props.yPos);
+  //lines that create an arrow
   let [path, setPath] = useState();
   let [pathArray, setPathArray] = useState([]);
+  //axis of current arrow path
   let [axis, setAxis] = useState("x");
+  //boolean used to define if it's creating initial position or not
   let [initialArrowPos, setInitialArrowPos] = useState(true);
 
+  useEffect(() => {
+    if (!initialArrowPos) arrowPath([lXPos - mXPos], [lYPos - mYPos]);
+  });
+
+  //set position of arrow's left point to mouse position
   function arrowPosition(e) {
     let bounds = e.target.getBoundingClientRect();
     let x = e.clientX - bounds.left;
@@ -18,16 +27,13 @@ function Arrow(props) {
     setLYPos(y);
   }
 
-  useEffect(() => {
-    if (!initialArrowPos) arrowPath([lXPos - mXPos], [lYPos - mYPos]);
-  });
-
+  //adjust arrow path to mouse position
   function arrowPath(horizontal, vertical) {
     if (axis === "x") setPath(`M ${mXPos} ${mYPos} h ${horizontal}`);
     else setPath(`M ${mXPos} ${mYPos} v ${vertical}`);
   }
 
-  function onmousemove(e) {
+  function onMouseMoveHandler(e) {
     if (props.flagArrow === true) {
       arrowPosition(e);
       if (initialArrowPos) {
@@ -36,7 +42,7 @@ function Arrow(props) {
     }
   }
 
-  function onclick(e) {
+  function onClickHandler(e) {
     if (initialArrowPos) {
       setInitialArrowPos(false);
     } else {
@@ -53,6 +59,7 @@ function Arrow(props) {
     }
   }
 
+  //define orbit movement
   function initialPosition() {
     let posXArrow;
     let posYArrow;
@@ -72,16 +79,10 @@ function Arrow(props) {
       posXArrow = props.xPos + 130;
       setAxis("x");
     }
-
     arrowPath([posXArrow - mXPos], [posYArrow - mYPos])
-
-    // if (axis === "x") {
-    //   setPath(`M ${mXPos} ${mYPos} H ${posXArrow - mXPos}`);
-    // } else {
-    //   setPath(`M ${mXPos} ${mYPos} V ${posYArrow - mYPos}`);
-    // }
   }
 
+  //add arrow in an arrows array and stop making it's path editable
   function endArrow() {
     if (props.cardClicked) {
       let arrows = props.arrowArray;
@@ -93,7 +94,8 @@ function Arrow(props) {
     }
   }
 
-  function render(onclick, onmousemove) {
+  //render arrow
+  function render(onClickHandler, onMouseMoveHandler) {
     return (
       <div id="arrow">
         <svg
@@ -109,8 +111,8 @@ function Arrow(props) {
             position: "absolute",
             backgroundImage: "none",
           }}
-          onMouseMove={onmousemove}
-          onClick={onclick}
+          onMouseMove={onMouseMoveHandler}
+          onClick={onClickHandler}
         >
           <defs>
             <marker
@@ -135,7 +137,7 @@ function Arrow(props) {
       </div>
     );
   }
-  return render(onclick, onmousemove);
+  return render(onClickHandler, onMouseMoveHandler);
 }
 
 export default Arrow;
