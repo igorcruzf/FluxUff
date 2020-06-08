@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TableCards from "./CardArea/TableCards";
 import Arrow from "./Arrow/Arrow";
-import ArrowArray from "./Arrow/ArrowArray";
+import SvgHandler from "./Arrow/SvgHandler";
 
 function FlowchartContainer() {
   const [idsArray, setIdsArray] = useState();
@@ -10,9 +10,16 @@ function FlowchartContainer() {
   const [yPos, setYPos] = useState();
   const [arrowArray, setArrowArray] = useState([]);
   const [cardClicked, setCardClicked] = useState(false);
+  const [path, setPath] = useState();
+  const [pathArray, setPathArray] = useState([]);
 
   return (
     <div>
+      <SvgHandler
+        arrowArray={arrowArray}
+        path={path}
+        pathArray={pathArray}
+      />
       {flagArrow && (
         <Arrow
           xPos={xPos}
@@ -23,10 +30,11 @@ function FlowchartContainer() {
           setArrowArray={setArrowArray}
           cardClicked={cardClicked}
           setCardClicked={setCardClicked}
+          path={path}
+          setPath={setPath}
+          pathArray={pathArray}
+          setPathArray={setPathArray}
         />
-      )}
-      {(
-        <ArrowArray arrowArray={arrowArray} setArrowArray={setArrowArray} />
       )}
 
       <TableCards

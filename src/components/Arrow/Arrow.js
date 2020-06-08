@@ -7,8 +7,7 @@ function Arrow(props) {
   let [mXPos, setMXPos] = useState(props.xPos);
   let [mYPos, setMYPos] = useState(props.yPos);
   //lines that create an arrow
-  let [path, setPath] = useState();
-  let [pathArray, setPathArray] = useState([]);
+
   //current arrow path's axis
   let [axis, setAxis] = useState("x");
   //boolean that define if it's setting initial position or not
@@ -29,8 +28,8 @@ function Arrow(props) {
 
   //adjust arrow path to mouse position
   function arrowPath(horizontal, vertical) {
-    if (axis === "x") setPath(`M ${mXPos} ${mYPos} h ${horizontal}`);
-    else setPath(`M ${mXPos} ${mYPos} v ${vertical}`);
+    if (axis === "x") props.setPath(`M ${mXPos} ${mYPos} h ${horizontal}`);
+    else props.setPath(`M ${mXPos} ${mYPos} v ${vertical}`);
   }
 
   function onMouseMoveHandler(e) {
@@ -46,7 +45,7 @@ function Arrow(props) {
     if (initialArrowPos) {
       setInitialArrowPos(false);
     } else {
-      setPathArray([...pathArray, path]);
+      props.setPathArray([...props.pathArray, props.path]);
       if (axis === "x") {
         setAxis("y");
         setMXPos(lXPos);
@@ -79,62 +78,47 @@ function Arrow(props) {
       posXArrow = props.xPos + 130;
       setAxis("x");
     }
-    arrowPath([posXArrow - mXPos], [posYArrow - mYPos])
+    arrowPath([posXArrow - mXPos], [posYArrow - mYPos]);
   }
 
   //add arrow in an arrows array and stop making it's path editable
   function endArrow() {
     if (props.cardClicked) {
-      let arrows = props.arrowArray;
-      arrows.push(new render(console.log("oi"), console.log("oi")));
-      props.setArrowArray(arrows);
+      props.setArrowArray([
+        ...props.arrowArray,
+        <path
+          d={props.pathArray}
+          stroke="#000"
+          strokeWidth="1"
+          fill="none"
+          markerEnd="url(#arrowhead)"
+        />
+      ]);
       props.setCardClicked(false);
       props.setFlagArrow(false);
-      console.log("why god");
+      console.log(props.arrowArray);
     }
   }
 
   //render arrow
   function render(onClickHandler, onMouseMoveHandler) {
     return (
-      <div id="arrow">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          style={{
-            left: "0px",
-            top: "0px",
-            width: "100%",
-            height: "100%",
-            display: "block",
-            minWidth: "2429px",
-            minHeight: "1679px",
-            position: "absolute",
-            backgroundImage: "none",
-          }}
-          onMouseMove={onMouseMoveHandler}
-          onClick={onClickHandler}
-        >
-          <defs>
-            <marker
-              id="arrowhead"
-              markerWidth="10"
-              markerHeight="7"
-              refX="0"
-              refY="3.5"
-              orient="auto"
-            >
-              <polygon points="0 0, 10 3.5, 0 7" />
-            </marker>
-          </defs>
-          <path
-            d={pathArray.join(" ") + path}
-            stroke="#000"
-            strokeWidth="1"
-            fill="none"
-            markerEnd="url(#arrowhead)"
-          />
-        </svg>
-      </div>
+      <div
+        id="arrow"
+        style={{
+          left: "0px",
+          top: "0px",
+          width: "100%",
+          height: "100%",
+          display: "block",
+          minWidth: "2429px",
+          minHeight: "1679px",
+          position: "absolute",
+          backgroundImage: "none",
+        }}
+        onMouseMove={onMouseMoveHandler}
+        onClick={onClickHandler}
+      ></div>
     );
   }
   return render(onClickHandler, onMouseMoveHandler);
