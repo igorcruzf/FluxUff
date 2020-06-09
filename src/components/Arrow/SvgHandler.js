@@ -30,7 +30,6 @@ function SvgHandler(props) {
               <polygon points="0 0, 10 3.5, 0 7" />
             </marker>
           </defs>
-          {props.arrowArray}
           <path
             d={props.pathArray.join(" ") + props.path}
             stroke="#000"
@@ -38,6 +37,7 @@ function SvgHandler(props) {
             fill="none"
             markerEnd="url(#arrowhead)"
           />
+          {props.arrowArray}
         </svg>
       </div>
     );

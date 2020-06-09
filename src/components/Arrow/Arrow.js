@@ -86,17 +86,31 @@ function Arrow(props) {
     if (props.cardClicked) {
       props.setArrowArray([
         ...props.arrowArray,
+        <div>
+        <defs>
+          <marker
+            id={`arrowhead${props.arrowArray.length}`}
+            markerWidth="10"
+            markerHeight="7"
+            refX="0"
+            refY="3.5"
+            orient="auto"
+          >
+            <polygon points="0 0, 10 3.5, 0 7" />
+          </marker>
+        </defs>
         <path
           d={props.pathArray}
           stroke="#000"
           strokeWidth="1"
           fill="none"
-          markerEnd="url(#arrowhead)"
+          markerEnd={`url(#arrowhead${props.arrowArray.length})`}
         />
+        </div>
       ]);
       props.setCardClicked(false);
       props.setFlagArrow(false);
-      console.log(props.arrowArray);
+      console.log(`arrowhead${props.arrowArray.length}`);
     }
   }
 
