@@ -16,6 +16,7 @@ function ClassCard(props) {
   let [ableFlag, setAbleFlag] = useState(false);
 
   let [opacity, setOpacity] = useState(0.5);
+  let [zIndex, setZIndex] = useState('0');
 
   function handleChange(evt) {
     setText(evt.target.value);
@@ -40,11 +41,14 @@ function ClassCard(props) {
 
   function visible() {
     setOpacity(1);
+    setZIndex(2);
   }
 
   function invisible() {
-    if (!ableFlag) setOpacity(0.5);
-  }
+    if (!ableFlag) {
+      setOpacity(0.5);
+      setZIndex(0);
+  }}
 
   function getPosicaoElemento() {
     var offsetTrail = document.getElementById(props.id);
@@ -77,6 +81,8 @@ function ClassCard(props) {
           height: "60px",
           backgroundColor: color,
           opacity: opacity,
+          position: "relative",
+          zIndex: zIndex
         }}
         id={props.id}
       >

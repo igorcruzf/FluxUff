@@ -18,6 +18,7 @@ function Arrow(props) {
 
   useEffect(() => {
     if (!initialArrowPos) arrowPath([lXPos - mXPos], [lYPos - mYPos]);
+    endArrow();
   });
 
   //set position of arrow's left point to mouse position
@@ -45,7 +46,7 @@ function Arrow(props) {
   }
 
   function onClickHandler(e) {
-    if(creatingArrow){
+    if (creatingArrow) {
       if (initialArrowPos) {
         setInitialArrowPos(false);
       } else {
@@ -58,10 +59,8 @@ function Arrow(props) {
           setMYPos(lYPos);
         }
         arrowPosition(e);
-        endArrow();
       }
     }
-    
   }
 
   //define orbit movement
@@ -84,7 +83,7 @@ function Arrow(props) {
       posXArrow = props.xPos + 130;
       setAxis("x");
     }
-    arrowPath([posXArrow - mXPos], [posYArrow - mYPos])
+    arrowPath([posXArrow - mXPos], [posYArrow - mYPos]);
   }
 
   //add arrow in an arrows array and stop making it's path editable
@@ -99,7 +98,17 @@ function Arrow(props) {
   //render arrow
   function render(onClickHandler, onMouseMoveHandler) {
     return (
-      <div id="arrow">
+      <div
+        id="arrow"
+        // style={{
+        //   inset: "103px 240px 38px 224px",
+        //   touchAction: "none",
+        //   cursor: "default",
+        //   overflow: "auto",
+        //   zIndex:"-10"
+          
+        // }}
+      >
         <svg
           onMouseMove={onMouseMoveHandler}
           onClick={onClickHandler}
@@ -113,7 +122,6 @@ function Arrow(props) {
             minHeight: "1679px",
             position: "absolute",
             backgroundImage: "none",
-            zIndex:'0'
           }}
         >
           <defs>
