@@ -7,7 +7,8 @@ function Arrow(props) {
   let [mXPos, setMXPos] = useState(props.xPos);
   let [mYPos, setMYPos] = useState(props.yPos);
   //lines that create an arrow
-
+  let [path, setPath] = useState();
+  let [pathArray, setPathArray] = useState([]);
   //current arrow path's axis
   let [axis, setAxis] = useState("x");
   //boolean that define if it's setting initial position or not
@@ -31,8 +32,8 @@ function Arrow(props) {
 
   //adjust arrow path to mouse position
   function arrowPath(horizontal, vertical) {
-    if (axis === "x") props.setPath(`M ${mXPos} ${mYPos} h ${horizontal}`);
-    else props.setPath(`M ${mXPos} ${mYPos} v ${vertical}`);
+    if (axis === "x") setPath(`M ${mXPos} ${mYPos} h ${horizontal}`);
+    else setPath(`M ${mXPos} ${mYPos} v ${vertical}`);
   }
 
   function onMouseMoveHandler(e) {

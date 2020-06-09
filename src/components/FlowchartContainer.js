@@ -33,10 +33,6 @@ function FlowchartContainer() {
           arrows={arrows}
           cardClicked={cardClicked}
           setCardClicked={setCardClicked}
-          path={path}
-          setPath={setPath}
-          pathArray={pathArray}
-          setPathArray={setPathArray}
         />
       </div>
     </div>
