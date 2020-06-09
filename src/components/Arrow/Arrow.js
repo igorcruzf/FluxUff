@@ -13,6 +13,8 @@ function Arrow(props) {
   //boolean that define if it's setting initial position or not
   let [initialArrowPos, setInitialArrowPos] = useState(true);
 
+  const [creatingArrow, setCreatingArrow] = useState(true);
+
   useEffect(() => {
     if (!initialArrowPos) arrowPath([lXPos - mXPos], [lYPos - mYPos]);
     endArrow();
@@ -34,7 +36,7 @@ function Arrow(props) {
   }
 
   function onMouseMoveHandler(e) {
-    if (props.flagArrow === true) {
+    if (creatingArrow) {
       arrowPosition(e);
       if (initialArrowPos) {
         initialPosition();
@@ -43,18 +45,20 @@ function Arrow(props) {
   }
 
   function onClickHandler(e) {
-    if (initialArrowPos) {
-      setInitialArrowPos(false);
-    } else {
-      props.setPathArray([...props.pathArray, props.path]);
-      if (axis === "x") {
-        setAxis("y");
-        setMXPos(lXPos);
+    if (creatingArrow) {
+      if (initialArrowPos) {
+        setInitialArrowPos(false);
       } else {
-        setAxis("x");
-        setMYPos(lYPos);
+        setPathArray([...pathArray, path]);
+        if (axis === "x") {
+          setAxis("y");
+          setMXPos(lXPos);
+        } else {
+          setAxis("x");
+          setMYPos(lYPos);
+        }
+        arrowPosition(e);
       }
-      arrowPosition(e);
     }
   }
 
@@ -84,33 +88,9 @@ function Arrow(props) {
   //add arrow in an arrows array and stop making it's path editable
   function endArrow() {
     if (props.cardClicked) {
-      props.setArrowArray([
-        ...props.arrowArray,
-        <div>
-        <defs>
-          <marker
-            id={`arrowhead${props.arrowArray.length}`}
-            markerWidth="10"
-            markerHeight="7"
-            refX="0"
-            refY="3.5"
-            orient="auto"
-          >
-            <polygon points="0 0, 10 3.5, 0 7" />
-          </marker>
-        </defs>
-        <path
-          d={props.pathArray}
-          stroke="#000"
-          strokeWidth="1"
-          fill="none"
-          markerEnd={`url(#arrowhead${props.arrowArray.length})`}
-        />
-        </div>
-      ]);
       props.setCardClicked(false);
+      setCreatingArrow(false);
       props.setFlagArrow(false);
-      console.log(`arrowhead${props.arrowArray.length}`);
     }
   }
 
@@ -119,20 +99,51 @@ function Arrow(props) {
     return (
       <div
         id="arrow"
-        style={{
-          left: "0px",
-          top: "0px",
-          width: "100%",
-          height: "100%",
-          display: "block",
-          minWidth: "2429px",
-          minHeight: "1679px",
-          position: "absolute",
-          backgroundImage: "none",
-        }}
-        onMouseMove={onMouseMoveHandler}
-        onClick={onClickHandler}
-      ></div>
+        // style={{
+        //   inset: "103px 240px 38px 224px",
+        //   touchAction: "none",
+        //   cursor: "default",
+        //   overflow: "auto",
+        //   zIndex:"-10"
+
+        // }}
+      >
+        <svg
+          onMouseMove={onMouseMoveHandler}
+          onClick={onClickHandler}
+          style={{
+            left: "0px",
+            top: "0px",
+            width: "100%",
+            height: "100%",
+            display: "block",
+            minWidth: "2429px",
+            minHeight: "1679px",
+            position: "absolute",
+            backgroundImage: "none",
+          }}
+        >
+          <defs>
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="7"
+              refX="0"
+              refY="3.5"
+              orient="auto"
+            >
+              <polygon points="0 0, 10 3.5, 0 7" />
+            </marker>
+          </defs>
+          <path
+            d={pathArray.join(" ") + path}
+            stroke="#000"
+            strokeWidth="1"
+            fill="none"
+            markerEnd="url(#arrowhead)"
+          />
+        </svg>
+      </div>
     );
   }
   return render(onClickHandler, onMouseMoveHandler);

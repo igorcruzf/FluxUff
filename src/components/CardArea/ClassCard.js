@@ -16,6 +16,7 @@ function ClassCard(props) {
   let [ableFlag, setAbleFlag] = useState(false);
 
   let [opacity, setOpacity] = useState(0.5);
+  let [zIndex, setZIndex] = useState("0");
 
   function handleChange(evt) {
     setText(evt.target.value);
@@ -40,10 +41,14 @@ function ClassCard(props) {
 
   function visible() {
     setOpacity(1);
+    setZIndex(2);
   }
 
   function invisible() {
-    if (!ableFlag) setOpacity(0.5);
+    if (!ableFlag) {
+      setOpacity(0.5);
+      setZIndex(0);
+    }
   }
 
   function getPosicaoElemento() {
@@ -62,10 +67,10 @@ function ClassCard(props) {
       offsetLeft += document.body.leftMargin;
       offsetTop += document.body.topMargin;
     }
-    props.setXPos(offsetLeft); //aqui tem que passar a posição x do card
-    props.setYPos(offsetTop); //e aqui a y
+    // props.setXPos(offsetLeft); //aqui tem que passar a posição x do card
+    // props.setYPos(offsetTop); //e aqui a y
     props.setFlagArrow(true);
-    console.log("oi");
+    props.setArrows([...props.arrows, [offsetLeft, offsetTop]]);
   }
   return (
     <div className={props.id} onMouseEnter={visible} onMouseLeave={invisible}>
@@ -77,6 +82,8 @@ function ClassCard(props) {
           height: "60px",
           backgroundColor: color,
           opacity: opacity,
+          position: "relative",
+          zIndex: zIndex,
         }}
         id={props.id}
       >

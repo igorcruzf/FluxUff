@@ -12,9 +12,9 @@ function TableCards(props) {
       rows={rows}
       columns={columns}
       onClickHandler={onClickHandler}
-      setXPos={props.setXPos}
-      setYPos={props.setYPos}
       setFlagArrow={props.setFlagArrow}
+      setArrows={props.setArrows}
+      arrows={props.arrows}
     />
   );
 
