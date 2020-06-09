@@ -16,6 +16,7 @@ function Arrow(props) {
 
   useEffect(() => {
     if (!initialArrowPos) arrowPath([lXPos - mXPos], [lYPos - mYPos]);
+    endArrow();
   });
 
   //set position of arrow's left point to mouse position
@@ -55,7 +56,6 @@ function Arrow(props) {
         setMYPos(lYPos);
       }
       arrowPosition(e);
-      endArrow();
     }
   }
 
@@ -86,18 +86,17 @@ function Arrow(props) {
   function endArrow() {
     if (props.cardClicked) {
       let arrows = props.arrowArray;
-      arrows.push(new render(console.log("oi"), console.log("oi")));
+      arrows.push(pathArray);
       props.setArrowArray(arrows);
       props.setCardClicked(false);
       props.setFlagArrow(false);
-      console.log("why god");
     }
   }
 
   //render arrow
   function render(onClickHandler, onMouseMoveHandler) {
     return (
-      <div id="arrow">
+      <div id={"arrow" + props.xPos}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           style={{

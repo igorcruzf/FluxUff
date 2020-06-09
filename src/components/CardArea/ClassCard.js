@@ -65,6 +65,7 @@ function ClassCard(props) {
     props.setXPos(offsetLeft); //aqui tem que passar a posição x do card
     props.setYPos(offsetTop); //e aqui a y
     props.setFlagArrow(true);
+    console.log("oi");
   }
   return (
     <div className={props.id} onMouseEnter={visible} onMouseLeave={invisible}>
