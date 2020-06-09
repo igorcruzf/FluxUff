@@ -2,8 +2,6 @@ import React from "react";
 import ClassCard from "../CardArea/ClassCard.js";
 
 function TableFactory(props) {
-
-
   return (
     <table id="table-of-cards" cellPadding="30%">
       <thead key={"thead-table-cards"}>
@@ -23,7 +21,13 @@ function TableFactory(props) {
                 id={`cell${i}-${j}`}
                 onClick={() => props.onClickHandler(`cell${i}-${j}`)}
               >
-                <ClassCard key={`cell${i}-${j}card`} id={`cell${i}-${j}card`} setXPos={props.setXPos} setYPos={props.setYPos} setFlagArrow={props.setFlagArrow} />
+                <ClassCard
+                  key={`cell${i}-${j}card`}
+                  id={`cell${i}-${j}card`}
+                  setFlagArrow={props.setFlagArrow}
+                  setArrows={props.setArrows}
+                  arrows={props.arrows}
+                />
               </td>
             ))}
           </tr>

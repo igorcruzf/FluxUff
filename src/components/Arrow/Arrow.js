@@ -14,6 +14,8 @@ function Arrow(props) {
   //boolean that define if it's setting initial position or not
   let [initialArrowPos, setInitialArrowPos] = useState(true);
 
+  const [creatingArrow, setCreatingArrow] = useState(true);
+
   useEffect(() => {
     if (!initialArrowPos) arrowPath([lXPos - mXPos], [lYPos - mYPos]);
   });
@@ -34,7 +36,7 @@ function Arrow(props) {
   }
 
   function onMouseMoveHandler(e) {
-    if (props.flagArrow === true) {
+    if (creatingArrow) {
       arrowPosition(e);
       if (initialArrowPos) {
         initialPosition();
@@ -43,20 +45,23 @@ function Arrow(props) {
   }
 
   function onClickHandler(e) {
-    if (initialArrowPos) {
-      setInitialArrowPos(false);
-    } else {
-      setPathArray([...pathArray, path]);
-      if (axis === "x") {
-        setAxis("y");
-        setMXPos(lXPos);
+    if(creatingArrow){
+      if (initialArrowPos) {
+        setInitialArrowPos(false);
       } else {
-        setAxis("x");
-        setMYPos(lYPos);
+        setPathArray([...pathArray, path]);
+        if (axis === "x") {
+          setAxis("y");
+          setMXPos(lXPos);
+        } else {
+          setAxis("x");
+          setMYPos(lYPos);
+        }
+        arrowPosition(e);
+        endArrow();
       }
-      arrowPosition(e);
-      endArrow();
     }
+    
   }
 
   //define orbit movement
@@ -85,12 +90,9 @@ function Arrow(props) {
   //add arrow in an arrows array and stop making it's path editable
   function endArrow() {
     if (props.cardClicked) {
-      let arrows = props.arrowArray;
-      arrows.push(new render(console.log("oi"), console.log("oi")));
-      props.setArrowArray(arrows);
       props.setCardClicked(false);
+      setCreatingArrow(false);
       props.setFlagArrow(false);
-      console.log("why god");
     }
   }
 
@@ -99,7 +101,8 @@ function Arrow(props) {
     return (
       <div id="arrow">
         <svg
-          xmlns="http://www.w3.org/2000/svg"
+          onMouseMove={onMouseMoveHandler}
+          onClick={onClickHandler}
           style={{
             left: "0px",
             top: "0px",
@@ -110,9 +113,8 @@ function Arrow(props) {
             minHeight: "1679px",
             position: "absolute",
             backgroundImage: "none",
+            zIndex:'0'
           }}
-          onMouseMove={onMouseMoveHandler}
-          onClick={onClickHandler}
         >
           <defs>
             <marker
