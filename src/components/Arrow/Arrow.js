@@ -98,17 +98,6 @@ function Arrow(props) {
   //render arrow
   function render(onClickHandler, onMouseMoveHandler) {
     return (
-      <div
-        id="arrow"
-        // style={{
-        //   inset: "103px 240px 38px 224px",
-        //   touchAction: "none",
-        //   cursor: "default",
-        //   overflow: "auto",
-        //   zIndex:"-10"
-
-        // }}
-      >
         <svg
           onMouseMove={onMouseMoveHandler}
           onClick={onClickHandler}
@@ -129,7 +118,7 @@ function Arrow(props) {
               id="arrowhead"
               markerWidth="10"
               markerHeight="7"
-              refX="0"
+              refX="9px"
               refY="3.5"
               orient="auto"
             >
@@ -144,7 +133,6 @@ function Arrow(props) {
             markerEnd="url(#arrowhead)"
           />
         </svg>
-      </div>
     );
   }
   return render(onClickHandler, onMouseMoveHandler);
