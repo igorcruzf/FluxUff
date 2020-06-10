@@ -2,17 +2,17 @@ import React, { useEffect, useState } from "react";
 
 function Arrow(props) {
   //arrow's left and right points
-  let [lXPos, setLXPos] = useState();
-  let [lYPos, setLYPos] = useState();
-  let [mXPos, setMXPos] = useState(props.xPos);
-  let [mYPos, setMYPos] = useState(props.yPos);
+  const [lXPos, setLXPos] = useState();
+  const [lYPos, setLYPos] = useState();
+  const [mXPos, setMXPos] = useState(props.xPos);
+  const [mYPos, setMYPos] = useState(props.yPos);
   //lines that create an arrow
-  let [path, setPath] = useState();
-  let [pathArray, setPathArray] = useState([]);
+  const [path, setPath] = useState();
+  const [pathArray, setPathArray] = useState([]);
   //current arrow path's axis
-  let [axis, setAxis] = useState("x");
+  const [axis, setAxis] = useState("x");
   //boolean that define if it's setting initial position or not
-  let [initialArrowPos, setInitialArrowPos] = useState(true);
+  const [initialArrowPos, setInitialArrowPos] = useState(true);
 
   const [creatingArrow, setCreatingArrow] = useState(true);
 
@@ -95,47 +95,43 @@ function Arrow(props) {
     }
   }
 
-  //render arrow
-  function render(onClickHandler, onMouseMoveHandler) {
-    return (
-        <svg
-          onMouseMove={onMouseMoveHandler}
-          onClick={onClickHandler}
-          style={{
-            left: "0px",
-            top: "0px",
-            width: "100%",
-            height: "100%",
-            display: "block",
-            minWidth: "2429px",
-            minHeight: "1679px",
-            position: "absolute",
-            backgroundImage: "none",
-          }}
+  return (
+    <svg
+      onMouseMove={onMouseMoveHandler}
+      onClick={onClickHandler}
+      style={{
+        left: "0px",
+        top: "0px",
+        width: "100%",
+        height: "100%",
+        display: "block",
+        minWidth: "2429px",
+        minHeight: "1679px",
+        position: "absolute",
+        backgroundImage: "none",
+      }}
+    >
+      <defs>
+        <marker
+          id="arrowhead"
+          markerWidth="10"
+          markerHeight="7"
+          refX="9px"
+          refY="3.5"
+          orient="auto"
         >
-          <defs>
-            <marker
-              id="arrowhead"
-              markerWidth="10"
-              markerHeight="7"
-              refX="9px"
-              refY="3.5"
-              orient="auto"
-            >
-              <polygon points="0 0, 10 3.5, 0 7" />
-            </marker>
-          </defs>
-          <path
-            d={pathArray.join(" ") + path}
-            stroke="#000"
-            strokeWidth="1"
-            fill="none"
-            markerEnd="url(#arrowhead)"
-          />
-        </svg>
-    );
-  }
-  return render(onClickHandler, onMouseMoveHandler);
+          <polygon points="0 0, 10 3.5, 0 7" />
+        </marker>
+      </defs>
+      <path
+        d={pathArray.join(" ") + path}
+        stroke="#000"
+        strokeWidth="1"
+        fill="none"
+        markerEnd="url(#arrowhead)"
+      />
+    </svg>
+  );
 }
 
 export default Arrow;

@@ -59,6 +59,7 @@ function ClassCard(props) {
       offsetLeft += offsetTrail.offsetLeft;
       offsetTop += offsetTrail.offsetTop;
       offsetTrail = offsetTrail.offsetParent;
+      console.log("oi");
     }
     if (
       navigator.userAgent.indexOf("Mac") !== -1 &&
@@ -70,8 +71,11 @@ function ClassCard(props) {
     // props.setXPos(offsetLeft); //aqui tem que passar a posição x do card
     // props.setYPos(offsetTop); //e aqui a y
     props.setFlagArrow(true);
-    props.setArrows([...props.arrows, [offsetLeft, offsetTop]]);
+    let arrows = props.arrows;
+    arrows.push([offsetLeft, offsetTop]);
+    props.setArrows(arrows);
   }
+
   return (
     <div className={props.id} onMouseEnter={visible} onMouseLeave={invisible}>
       <Card

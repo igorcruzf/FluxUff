@@ -11,10 +11,10 @@ function FlowchartContainer() {
   return (
     <div>
       <div>
-        {arrows.map((pos) => (
+        {arrows.map(([x, y]) => (
           <Arrow
-            xPos={pos[0]}
-            yPos={pos[1]}
+            xPos={x}
+            yPos={y}
             setFlagArrow={setFlagArrow}
             flagArrow={flagArrow}
             cardClicked={cardClicked}
